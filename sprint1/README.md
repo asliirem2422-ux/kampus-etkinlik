@@ -1,1 +1,1 @@
-[kampus-etkinlik-pi.vercel.app](kampus-etkinlik-pi.vercel.app)
+[kampus-etkinlik-pi.vercel.app](https://kampus-etkinlik-pi.vercel.app)
