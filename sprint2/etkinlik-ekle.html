@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/<numaran>.css">
+    <title>Etkinlik Ekle</title>
+</head>
+<body>
+    <header>
+        <h1>Etkinlik Ekle</h1>
+        <nav>
+            <a href="index.html">Ana Sayfa</a>
+            <a href="etkinlikler.html">Etkinlikler</a>
+            <a href="etkinlik-ekle.html">Ekle</a>
+            <a href="etkinlik-guncelle.html">Güncelle</a>
+        </nav>
+    </header>
+
+    <main>
+        <br>
+        <form action="#" method="post">
+            <div>
+                <label for="ad">Etkinlik Adı</label><br>
+                <input type="text" id="ad" name="ad" required>
+            </div>
+            <br>
+            <div>
+                <label for="kategori">Kategori</label><br>
+                <select id="kategori" name="kategori" required>
+                    <option value="Seminer">Seminer</option>
+                    <option value="Atölye">Atölye</option>
+                    <option value="Konferans">Konferans</option>
+                </select>
+            </div>
+            <br>
+            <div>
+                <label for="tarih">Tarih</label><br>
+                <input type="text" id="tarih" name="tarih" placeholder="gg.aa.yyyy" required>
+            </div>
+            <br>
+            <div>
+                <label for="aciklama">Açıklama</label><br>
+                <textarea id="aciklama" name="aciklama" rows="3" cols="25" required></textarea>
+            </div>
+            <br>
+            <button type="submit">Kaydet</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>Aslı İrem Şahin · 2026</p>
+    </footer>
+</body>
+</html>
