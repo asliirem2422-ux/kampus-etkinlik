@@ -1,10 +1,10 @@
 /* Aslı İrem Şahin - 2321032061 */
 :root {
-  --no: 2321032061; /* Kendi numaranızı yazın */
-  --ton: 101;     /* Numaranız % 360 sonucu */
+  --no: 2321032061;
+  --ton: 101;     /* 2321032061 % 360 */
   --renk-ana: hsl(var(--ton) 65% 38%);
   --renk-zemin: hsl(var(--ton) 30% 97%);
-  --font: Verdana, sans-serif; /* Son hanenize karşılık gelen font */
+  --font: Verdana, sans-serif;
   --bosluk-m: 1rem;
   --kose: 8px;
 }
@@ -22,26 +22,48 @@ body {
 }
 
 /* Header & Menü */
-header {
+header.site-baslik {
   background-color: var(--renk-ana);
   color: white;
   padding: var(--bosluk-m);
 }
 
-header h1 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.5rem;
+header.site-baslik h1 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.6rem;
 }
 
-nav a {
+header.site-baslik p {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+nav.menu {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+nav.menu a {
   color: white;
   text-decoration: none;
-  margin-right: 1rem;
   font-size: 0.95rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
 }
 
-nav a:hover {
+nav.menu a:hover {
   text-decoration: underline;
+}
+
+/* Aktif Sayfa Göstergesi (Slayt 8) */
+nav.menu a.active {
+  background-color: white;
+  color: var(--renk-ana) !important;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 main {
@@ -50,7 +72,7 @@ main {
   margin: 0 auto;
 }
 
-/* Tablodan Karta Dönüşüm: Kart Izgarası (Grid) */
+/* Kart Izgarası (Grid) */
 .etkinlik-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -67,13 +89,14 @@ main {
 
 .kart h3 {
   margin-top: 0;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
 }
 
 .kart a {
   color: var(--renk-ana);
   font-weight: bold;
   text-decoration: none;
+  cursor: pointer;
 }
 
 /* Detay Sayfası Düzeni */
@@ -81,6 +104,10 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  background: white;
+  padding: var(--bosluk-m);
+  border-radius: var(--kose);
+  border: 1px solid #e2e8f0;
 }
 
 .detay-konteyner figure {
@@ -89,25 +116,37 @@ main {
 
 .detay-konteyner figure img {
   width: 100%;
-  max-width: 320px;
+  max-width: 340px;
   border-radius: var(--kose);
   background-color: #eee;
+  display: block;
 }
 
 .detay-konteyner dl {
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 110px 1fr;
   gap: 0.5rem;
-  margin: 0;
+  margin: 0 0 1rem 0;
+}
+
+.detay-bilgi h3 {
+  margin-top: 0;
+}
+
+.detay-butonlar {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
 }
 
 /* Form Tasarımı */
-form {
+form.form {
   background: white;
   padding: var(--bosluk-m);
   border: 1px solid #e2e8f0;
   border-radius: var(--kose);
-  max-width: 450px;
+  max-width: 500px;
 }
 
 .form-grup {
@@ -127,51 +166,28 @@ input, select, textarea {
   border: 1px solid #cbd5e1;
   border-radius: 4px;
   font-family: inherit;
+  font-size: 0.95rem;
 }
 
-/* Boş bırakılan hatalı alan uyarısı (Slayt 5 & 7) */
-input:invalid:focus, textarea:invalid:focus {
-  border-color: #ef4444;
-  outline: 1px solid #ef4444;
-}
-
-button {
+button.btn, .btn {
+  display: inline-block;
   background-color: var(--renk-ana);
   color: white;
   border: none;
-  padding: 0.7rem 1.5rem;
+  padding: 0.6rem 1.2rem;
   border-radius: 4px;
   cursor: pointer;
   font-family: inherit;
   font-weight: bold;
+  font-size: 0.95rem;
+  text-decoration: none;
 }
 
-footer {
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.85rem;
-  color: #64748b;
+button.btn:hover, .btn:hover {
+  opacity: 0.9;
 }
 
-/* Geniş Ekran (Responsive / Masaüstü) Kuralları */
-@media (min-width: 768px) {
-  /* index.html'de 2 kart yan yana */
-  .grid-2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* etkinlikler.html'de 3 kart yan yana */
-  .grid-3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  /* Detay sayfasında afiş solda, bilgiler sağda */
-  .detay-konteyner {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-}
-/* Sprint 3 Ek Stilleri */
+/* Filtre Alanı */
 .filtre-kutusu {
   display: grid;
   grid-template-columns: 1fr;
@@ -183,31 +199,13 @@ footer {
   border: 1px solid #e2e8f0;
 }
 
-@media (min-width: 768px) {
-  .filtre-kutusu {
-    grid-template-columns: 2fr 1fr;
-  }
-}
-
 .sonuc-metni {
   font-weight: bold;
   color: #475569;
   margin: 0.5rem 0 1rem 0;
 }
 
-/* Hata ve Başarı Kutuları */
-.hata-metni {
-  color: #dc2626;
-  font-size: 0.85rem;
-  display: block;
-  margin-top: 0.25rem;
-}
-
-[aria-invalid="true"] {
-  border-color: #dc2626 !important;
-  outline: 1px solid #dc2626;
-}
-
+/* Hata ve Bilgi Kutuları */
 .hata-kutusu {
   border: 1px solid #dc2626;
   background-color: #fef2f2;
@@ -217,36 +215,30 @@ footer {
   margin-top: 1rem;
 }
 
-.basari-kutusu {
-  border: 1px solid #16a34a;
-  background-color: #f0fdf4;
-  color: #166534;
+footer {
+  text-align: center;
   padding: 1.5rem;
-  border-radius: var(--kose);
-  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 2rem;
 }
 
-.basari-kutusu pre {
-  background: white;
-  padding: 1rem;
-  border-radius: 4px;
-  overflow-x: auto;
-}
+/* Geniş Ekran (Responsive) Kuralları */
+@media (min-width: 768px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-.btn {
-  display: inline-block;
-  background-color: var(--renk-ana);
-  color: white;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-}
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-nav a.active {
-  background-color: white;
-  color: var(--renk-ana) !important;
-  border-radius: 4px;
-  padding: 0.3rem 0.6rem;
-  font-weight: bold;
+  .detay-konteyner {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .filtre-kutusu {
+    grid-template-columns: 2fr 1fr;
+  }
 }
