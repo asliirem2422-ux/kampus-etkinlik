@@ -1,7 +1,7 @@
 import type { CampusEvent, Category } from "../types/campus-event";
 
 export function searchEvents(list: CampusEvent[], text: string): CampusEvent[] {
-  const q = text.trim().toLowerCase("tr-TR");
+  const q = text.trim().toLocaleLowerCase("tr-TR");
   if (!q) return list;
   return list.filter(
     (e) =>
