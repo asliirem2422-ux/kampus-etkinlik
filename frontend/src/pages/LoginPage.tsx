@@ -1,35 +1,34 @@
 import { useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
-  const [sent, setSent] = useState(false);
+  const navigate = useNavigate();
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const found: { email?: string; password?: string } = {};
 
-    if (!email.includes("@")) {
+    if (!email || !email.includes("@")) {
       found.email = "Geçerli bir e-posta adresi girin.";
     }
-    if (password.length < 6) {
+    if (!password || password.length < 6) {
       found.password = "Şifre en az 6 karakter olmalıdır.";
     }
 
     setErrors(found);
+
+    // Hata yoksa Giriş başarılı simüle edilir ve Yönetim (/admin) sayfasına yönlendirir
     if (Object.keys(found).length === 0) {
-      setSent(true);
-    } else {
-      setSent(false);
+      navigate("/admin");
     }
   }
 
   return (
     <section>
       <h2>Giriş Yap</h2>
-      {sent && <p style={{ color: "green", fontWeight: "bold" }}>Gerçek giriş Sprint 10'da aktif edilecek. Giriş başarılı!</p>}
       <form className="form" onSubmit={handleSubmit} noValidate>
         <div className="form-grup">
           <label htmlFor="email">E-posta</label>
@@ -40,8 +39,9 @@ function LoginPage() {
             onChange={(e) => setEmail(e.target.value)}
             className={errors.email ? "hata-border" : ""}
           />
-          {errors.email && <span className="hata-metni">{errors.email}</span>}
+          {errors.email && <span className="hata-metni" style={{ color: "red", fontSize: "0.85rem" }}>{errors.email}</span>}
         </div>
+
         <div className="form-grup">
           <label htmlFor="password">Şifre</label>
           <input
@@ -51,14 +51,17 @@ function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
             className={errors.password ? "hata-border" : ""}
           />
-          {errors.password && <span className="hata-metni">{errors.password}</span>}
+          {errors.password && <span className="hata-metni" style={{ color: "red", fontSize: "0.85rem" }}>{errors.password}</span>}
         </div>
+
         <button type="submit" className="btn btn-ana">
           Giriş Yap
         </button>
       </form>
       <br />
-      <Link to="/forgot-password">Şifremi unuttum</Link> | <Link to="/register">Kayıt ol</Link>
+      <p>
+        <Link to="/forgot-password">Şifremi unuttum</Link> | <Link to="/register">Hesabın yok mu? Kayıt ol</Link>
+      </p>
     </section>
   );
 }
