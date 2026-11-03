@@ -43,27 +43,28 @@ nav.menu {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  background-color: var(--renk-ana);
+  padding: 0.5rem 1rem;
 }
 
 nav.menu a {
-  color: white;
+  color: #e2e8f0; /* Pasif linkler yeşil üstünde açık renk görünür */
   text-decoration: none;
   font-size: 0.95rem;
   padding: 0.35rem 0.75rem;
   border-radius: 4px;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 nav.menu a:hover {
-  text-decoration: underline;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
 }
 
-/* Aktif Sayfa Göstergesi (Slayt 8) */
 nav.menu a.active {
-  background-color: white;
+  background-color: #ffffff !important;
   color: var(--renk-ana) !important;
   font-weight: bold;
-  text-decoration: none;
 }
 
 main {
