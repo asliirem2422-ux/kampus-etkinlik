@@ -3,14 +3,12 @@ import EventCard from "./EventCard";
 
 interface EventListProps {
   events: CampusEvent[];
-  onShowDetail: (id: string) => void;
   emptyText?: string;
   columnsClass?: string;
 }
 
 function EventList({
   events,
-  onShowDetail,
   emptyText = "Aramanıza uygun etkinlik bulunamadı.",
   columnsClass = "grid-3"
 }: EventListProps) {
@@ -21,14 +19,9 @@ function EventList({
   return (
     <div className={`etkinlik-grid ${columnsClass}`}>
       {events.map((event) => (
-        <EventCard
-          key={event.id}
-          event={event}
-          onShowDetail={onShowDetail}
-        />
+        <EventCard key={event.id} event={event} />
       ))}
     </div>
   );
 }
-
 export default EventList;

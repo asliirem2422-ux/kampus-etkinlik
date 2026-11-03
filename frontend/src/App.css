@@ -242,3 +242,63 @@ footer {
     grid-template-columns: 2fr 1fr;
   }
 }
+
+/* Tablo ve Yönetim Sayfası Stilleri */
+.tablo {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: white;
+  border-radius: var(--kose);
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.tablo th {
+  background: var(--renk-ana);
+  color: white;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.tablo td {
+  padding: 0.75rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.islemler {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.buton-sil {
+  background-color: #dc2626 !important;
+}
+
+.buton-sil:hover {
+  opacity: 0.9;
+}
+
+/* Mobil Tablo Adaptasyonu */
+@media (max-width: 699px) {
+  .tablo thead {
+    display: none;
+  }
+  .tablo tr {
+    display: block;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--kose);
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+  }
+  .tablo td {
+    display: flex;
+    justify-content: space-between;
+    border-top: none;
+  }
+  .tablo td[data-baslik]::before {
+    content: attr(data-baslik) ": ";
+    font-weight: bold;
+    color: #475569;
+  }
+}
